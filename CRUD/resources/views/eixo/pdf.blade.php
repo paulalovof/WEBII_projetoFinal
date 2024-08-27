@@ -1,7 +1,7 @@
 <h1>Relatiorio</h1>
 <br><br>
 <hr>
-<h2>Eixo</h2>
+<h2>Eixos</h2>
 
 <ul>
     @foreach ($data as $item)

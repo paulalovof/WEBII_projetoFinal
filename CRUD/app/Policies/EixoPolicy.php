@@ -36,4 +36,8 @@ class EixoPolicy
     public function destroy(){
         return PermissionController::isAuthorized('eixo.destroy');
     }
+
+    public function graph(){
+        return PermissionController::isAuthorized('eixo.graph');
+    }
 }

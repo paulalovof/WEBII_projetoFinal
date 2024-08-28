@@ -25,9 +25,11 @@ Route::resource('/eixo', EixoController::class)->middleware(['auth']);
 
 Route::post('/inscricao/{id}', [InscricaoController::class, 'index'])->name('inscricao.index');
 
+Route::post('/inscricao/cancel/{id}', [InscricaoController::class, 'cancel'])->name('inscricao.cancel');
+
 Route::get('/report/eixo', [EixoController::class, 'report']) ->name('report');
 
-Route::get('/graph/eixo', [EixoController::class, 'graph']) -> name('graph');
+Route::get('/graph/eixo', [EixoController::class, 'graph']) -> name('eixo.graph');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

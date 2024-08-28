@@ -17,12 +17,11 @@
         </div>
         
     </x-slot>
-
-
+    
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100 flex flex-col">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg ">
+                <div class="p-6 text-gray-900 dark:text-gray-100 flex flex-col ">
                     <table class="text-black">
                         <thead>
                             <th class="w-[20px] p-2">ID</th>
@@ -54,14 +53,6 @@
                                         </span>
                                         @endcan
 
-                                        <span class="material-symbols-outlined">
-                                            <a href="{{route('report')}}" target = "_blank">lab_profile</a>
-                                        </span>
-
-                                        <span class="material-symbols-outlined">
-                                            <a href="{{route('graph')}}" target = "_blank">bar_chart</a>
-                                        </span>
-
                                         @can('destroy', App\Models\Eixo::class) 
                                             <form method="POST" action="{{route('eixo.destroy', $item->id)}}" class="material-symbols-outlined text-red-500">
                                                 @csrf
@@ -71,23 +62,46 @@
                                         @endcan
 
                                         @can('index', App\Models\Inscricao::class)
-                                            <form action="{{route('inscricao.index', $item->id)}}" method="post">
-                                                @csrf
-                                                @if ($item->flag)
-                                                    <button type="submit">Você já está inscrito</button>
-                                                @else
+                                            @if($item->flag)
+                                                <form action="{{route('inscricao.cancel', $item->id)}}" method="post">
+                                                    @csrf
+                                                        <button type="submit">Cancelar Inscrição</button>
+                                                </form>
+                                            @else
+                                                <form action="{{route('inscricao.index', $item->id)}}" method="post">
+                                                    @csrf
                                                     <button type="submit">Inscreva-se</button>
-                                                @endif
-                                                
-                                            </form> 
+                                                </form> 
+                                            @endif
+                                            
                                         @endcan
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
+                    
+                </div>
+                <hr>
+                <div class="text-center">
+                    <div class="flex flex-row justify-center p-3">
+                        <a href="{{route('report')}}">Relatório Geral</a>
+                        <span class="material-symbols-outlined">
+                            <a href="{{route('report')}}" target = "_blank">lab_profile</a>
+                        </span>
+                    </div>
+                    
+                    <div class="flex flex-row justify-center p-3">
+                        @can('graph', App\Models\Eixo::class)
+                        <a href="{{route('eixo.graph')}}">Gráfico Inscrições Eixos X Alunos</a>
+                            <span class="material-symbols-outlined">
+                                <a href="{{route('eixo.graph')}}" target = "_blank">bar_chart</a>
+                            </span>
+                        @endcan
+                    </div>
                 </div>
             </div>
+                
         </div>
     </div>
 

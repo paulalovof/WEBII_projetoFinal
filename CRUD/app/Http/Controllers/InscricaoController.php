@@ -38,4 +38,23 @@ class InscricaoController extends Controller
         return "<h1>ERRO: Eixo NÃO ENCONTRADO!</h1>";
     }
 
+    public function cancel($id)
+    {
+        // Lógica para cancelar a inscrição
+        //$inscricao = Inscricao::findOrFail($id);
+        
+        $data = Inscricao::all();
+
+        $eixo = Eixo::find($id);
+        foreach($data as $item) {
+            $inscricaoExistente = Inscricao::where('user_id', Auth::user()->id)->where('eixo_id', $id)->first();
+            if(isset($inscricaoExistente)){
+                $eixo->flag = false; 
+                $inscricaoExistente->delete();
+            } 
+        }
+        
+        return redirect()->route('eixo.index');
+    }
+
 }

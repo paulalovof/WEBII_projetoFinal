@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript" src="{{asset('js/google-chart-loader.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('js/google-chart-loader.js') }}"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <title>Gráfico Eixo</title>
 </head>
@@ -22,80 +22,70 @@
     </div>
 
     <script type="text/javascript">
-        var data_graph = <?php echo $data ?>;
+        // Converte o array PHP para JSON para uso no JavaScript
+        var data_graph = {!! $data !!};
 
-        google.charts.load('current', {'packages':['corechart']})
+        google.charts.load('current', {'packages':['corechart']});
         google.charts.setOnLoadCallback(drawChart);
 
         function drawChart() {
-            // Dados do Gráfico
+            data_graph.unshift(['Eixo', 'Inscrições']);
             let data = google.visualization.arrayToDataTable(data_graph);
+
             // GRÁFICO DE BARRAS
-            // Opções de Configuração
-            options = {
-                title: 'TOTAL DE HORAS DOS ALUNOS',
+            let optionsBar = {
+                title: 'Inscrições por Eixo',
                 colors: ['#198754'],
                 legend: 'none',
                 hAxis: {
-                    title: 'Horas Validadas',
-
+                    title: 'Eixos',
                     titleTextStyle: {
                         fontSize: 12,
                         bold: true,
                     }
                 },
-                vAxis: {},
-            };
-
-            // DESENHA GRÁFICO DE BARRAS
-            chart = new google.visualization.BarChart(document.getElementById('barra'));
-            chart.draw(data, options);
-
-            // ================================================= //
-            // GRÁFICO DE PIZZA
-            // Opções de Configuração
-            options = {
-                title: 'TOTAL DE HORAS DOS ALUNOS',
-                is3D: true
-            };
-
-            // DESENHA GRÁFICO DE PIZZA
-            chart = new google.visualization.PieChart(document.getElementById('pizza'));
-            chart.draw(data, options);
-
-            // ================================================= //
-            // GRÁFICO DE COLUNA
-            // Opções de Configuração
-            options = {
-                title: 'TOTAL DE HORAS DOS ALUNOS',
-                colors: ['#198754'],
-                legend: 'none',
-                hAxis: {},
                 vAxis: {
-                    title: 'Horas Validadas',
+                    title: 'Número de Inscrições',
                     titleTextStyle: {
                         fontSize: 12,
                         bold: true,
                     }
                 }
             };
+            let barChart = new google.visualization.BarChart(document.getElementById('barra'));
+            barChart.draw(data, optionsBar);
 
-            // DESENHA GRÁFICO DE COLUNAS
-            chart = new google.visualization.ColumnChart(document.getElementById('coluna'));
-            chart.draw(data, options);
-
-            // ================================================= //
-            // GRÁFICO DE LINHA
-            // Opções de Configuração
-            options = {
-                title: 'TOTAL DE HORAS DOS ALUNOS',
-                colors: ['#198754'],
-                curveType: 'function',
-                legend: { position: 'bottom' }
+            // GRÁFICO DE PIZZA
+            let optionsPie = {
+                title: 'Distribuição de Inscrições por Eixo',
+                is3D: true
             };
+            let pieChart = new google.visualization.PieChart(document.getElementById('pizza'));
+            pieChart.draw(data, optionsPie);
 
-            chart = new google.visualization.LineChart(document.getElementById('linha'));
-            chart.draw(data, options);
+            // GRÁFICO DE COLUNA
+            let optionsColumn = {
+                title: 'Inscrições por Eixo',
+                colors: ['#198754'],
+                legend: 'none',
+                hAxis: {
+                    title: 'Eixos',
+                    titleTextStyle: {
+                        fontSize: 12,
+                        bold: true,
+                    }
+                },
+                vAxis: {
+                    title: 'Número de Inscrições',
+                    titleTextStyle: {
+                        fontSize: 12,
+                        bold: true,
+                    }
+                }
+            };
+            let columnChart = new google.visualization.ColumnChart(document.getElementById('coluna'));
+            columnChart.draw(data, optionsColumn);
+
         }
     </script>
 </body>

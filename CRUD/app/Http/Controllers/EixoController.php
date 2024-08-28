@@ -135,15 +135,32 @@ class EixoController extends Controller
     }
 
     public function graph(){
-        $data = json_encode([
-            ["NOME", "TOTAL"],
-            ["Eduardo", 100],
-            ["Paula", 150],
-            ["Betinho", 130],
-            ["Maria", 200],
-            ["Gil", 90]
-        ]);
+        $this->authorize('graph', Eixo::class);
+    
+        $insc = Inscricao::all();
+        $eixo = Eixo::all();
+    
+        $array = [];
+        foreach($eixo as $item) {
+            $cont = 0;
+            foreach($insc as $iteminsc){
+                if($iteminsc->eixo_id == $item->id){
+                    $cont++;
+                }
+            }
+            // Armazena o contador no array usando o id do eixo como chave
+            $array[$item->id] = $cont;
+        }
+        $data = [];
+        foreach($eixo as $item){
+            $data[] = [$item->nome, $array[$item->id]];
+        }
+    
+        // Converte o array de dados para JSON
+        //dd($data);
+        $data = json_encode($data);
 
         return view('eixo.graph', compact('data'));
+
     }
 }

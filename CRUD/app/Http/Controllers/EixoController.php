@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Models\Eixo;
+use App\Models\Inscricao;
 use Dompdf\Dompdf;
+use Illuminate\Support\Facades\Auth;
 
 class EixoController extends Controller
 {
@@ -14,15 +16,25 @@ class EixoController extends Controller
         $this->authorize('index', Eixo::class);
 
         $data = Eixo::all();
-        //dd($data);
+        
+        $cont = 0;
+        foreach($data as $item) {
+            $item->flag = false; 
+            $inscricaoExistente = Inscricao::where('user_id', Auth::user()->id)->where('eixo_id', $item->id)->first();
+            if(isset($inscricaoExistente)) $item->flag = true; 
+            $data[$cont] = $item;
+            $cont++;
+        }
+
+        //dd($inscricaoExistente);
         Storage::disk('local')->put('example.txt', 'Contents');
-        return view('eixo.index', compact('data'));
+        return view('eixo.index', compact(['data']));
     }
 
     public function create()
     {
         $this->authorize('create', Eixo::class);
-
+        
         return view('eixo.create');
     }
 
@@ -71,8 +83,9 @@ class EixoController extends Controller
         $this->authorize('edit', Eixo::class);
 
         $eixo = Eixo::find($id);
+        //dd($eixo);
         if(isset($eixo)){
-            return view('eixo.edit', compact(['eixo']));
+            return view('eixo.edit', compact('eixo'));
         }
 
         return "<h1>ERRO: EIXO NÃO ENCONTRADO!</h1>";

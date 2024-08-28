@@ -26,8 +26,8 @@
                         @method('PUT')
 
                         <div class="p-2">
-                            <p>Nome:</p>
-                            <input type="text" name="nome" class="sm:rounded-lg" value={{$eixo->nome}}><br>
+                            <p>Nome: {{$eixo->nome}}</p>
+                            <input type="text" name="nome" class="sm:rounded-lg" value="{{$eixo->nome}}"><br>
                         </div>
 
                         <div class="p-2">

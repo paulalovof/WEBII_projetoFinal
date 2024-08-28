@@ -23,7 +23,7 @@ Route::get('/', function () {
 Route::resource('/eixo', EixoController::class)->middleware(['auth']);
 
 
-Route::get('/inscricao', [InscricaoController::class, 'index'])->name('index');
+Route::post('/inscricao/{id}', [InscricaoController::class, 'index'])->name('inscricao.index');
 
 Route::get('/report/eixo', [EixoController::class, 'report']) ->name('report');
 

@@ -70,8 +70,16 @@
                                             </form>
                                         @endcan
 
-                                        @can('index', App\Models\Inscricao::class) 
-                                                <a href="{{route('index', $item->id)}}">Inscrição</a>
+                                        @can('index', App\Models\Inscricao::class)
+                                            <form action="{{route('inscricao.index', $item->id)}}" method="post">
+                                                @csrf
+                                                @if ($item->flag)
+                                                    <button type="submit">Você já está inscrito</button>
+                                                @else
+                                                    <button type="submit">Inscreva-se</button>
+                                                @endif
+                                                
+                                            </form> 
                                         @endcan
                                     </td>
                                 </tr>

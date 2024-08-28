@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EixoController;
+use App\Http\Controllers\InscricaoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,9 @@ Route::get('/', function () {
 });
 
 Route::resource('/eixo', EixoController::class)->middleware(['auth']);
+
+
+Route::get('/inscricao', [InscricaoController::class, 'index'])->name('index');
 
 Route::get('/report/eixo', [EixoController::class, 'report']) ->name('report');
 

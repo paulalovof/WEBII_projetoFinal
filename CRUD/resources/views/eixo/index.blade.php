@@ -69,6 +69,10 @@
                                                 <button type="submit" value="Remover">delete</button> 
                                             </form>
                                         @endcan
+
+                                        @can('index', App\Models\Inscricao::class) 
+                                                <a href="{{route('index', $item->id)}}">Inscrição</a>
+                                        @endcan
                                     </td>
                                 </tr>
                             @endforeach

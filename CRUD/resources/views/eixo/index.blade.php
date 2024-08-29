@@ -8,9 +8,9 @@
             @can('create', App\Models\Eixo::class)
                 <div class="max-w-8xl sm:px-6 lg:px-8">
                     <a href="{{route('eixo.create')}}">
-                        <x-secondary-button class="ms-3" >
+                        <x-primary-button class="ms-3" style="background-color: #88b04b; border: none;" >
                                 Cadastrar
-                        </x-secondary-button>
+                        </x-primary-button>
                     </a>
                 </div>
             @endcan

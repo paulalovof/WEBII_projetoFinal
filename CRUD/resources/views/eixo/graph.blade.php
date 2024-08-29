@@ -42,7 +42,7 @@
                 // GRÁFICO DE BARRAS
                 let optionsBar = {
                     title: 'Inscrições por Eixo',
-                    colors: ['#198754'],
+                    colors: ['#88b04b'],
                     legend: 'none',
                     hAxis: {
                         title: 'Eixos',
@@ -73,7 +73,7 @@
                 // GRÁFICO DE COLUNA
                 let optionsColumn = {
                     title: 'Inscrições por Eixo',
-                    colors: ['#198754'],
+                    colors: ['#6b5b95'],
                     legend: 'none',
                     hAxis: {
                         title: 'Eixos',

@@ -37,7 +37,7 @@
                         </div>
 
                         <div>
-                            <x-primary-button class="ms-3" type="submit" >
+                            <x-primary-button class="ms-3" style="background-color: #6b5b95; border: none;" type="submit" >
                                 Salvar
                             </x-primary-button>
                         </div>

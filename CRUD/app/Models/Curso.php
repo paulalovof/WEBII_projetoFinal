@@ -5,12 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Eixo extends Model
+class Curso extends Model
 {
     use HasFactory;
 
-    public function cursos() {
-        return $this->hasMany(Curso::class);
+    public function eixo() {
+        return $this->belongsTo(Eixo::class);
     }
-    //protected $table = "paulete";
 }

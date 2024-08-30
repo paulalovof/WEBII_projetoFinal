@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\CursoController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EixoController;
 use App\Http\Controllers\InscricaoController;
+use App\Models\Curso;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +32,8 @@ Route::post('/inscricao/cancel/{id}', [InscricaoController::class, 'cancel'])->n
 Route::get('/report/eixo', [EixoController::class, 'report']) ->name('report');
 
 Route::get('/graph/eixo', [EixoController::class, 'graph']) -> name('eixo.graph');
+
+Route::resource('curso', CursoController::class)->middleware(['auth']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

@@ -26,25 +26,31 @@
                         @method('PUT')
 
                         <div class="p-2">
-                            <p>Nome: {{$curso->nome}}</p>
+                            <p>Nome:</p>
                             <input type="text" name="nome" class="sm:rounded-lg" value="{{$curso->nome}}"><br>
                         </div>
 
                         <div class="p-2">
-                            <p>Descrição:</p>
-                            <textarea name="sigla" id="" cols="15" rows="6">{{$curso->sigla}}</textarea><br>
+                            <p>Sigla:</p>
+                            <input type="text" name="sigla" class="sm:rounded-lg" value="{{$curso->sigla}}"><br>
                         </div>
 
-                        <select name="eixo_id" id="eixo_id" class="p-2">
-                            @foreach ($eixos as $item)
-                                @if($item->id == $curso->eixo_id)
-                                    <option value="{{$item->id}}" selected>{{ $item->nome }}</option>
-                                @endif
-                                <option value="{{$item->id}}">{{$item->nome}}</option>   
-                            @endforeach
-                        </select>
+                        <div class = "pt-2">
+
+                            <p>Eixo:</p>
+                            <select name="eixo_id" id="eixo_id" class="p-2 sm:rounded-lg">
+                                @foreach ($eixos as $item)
+                                    @if($item->id == $curso->eixo_id)
+                                        <option value="{{$item->id}}" selected>{{ $item->nome }}</option>
+                                    @else
+                                        <option value="{{$item->id}}">{{$item->nome}}</option>  
+                                    @endif 
+                                @endforeach
+                            </select>
+                        </div>
+                        
                 
-                        <div>
+                        <div class="pt-5">
                             <x-primary-button class="ms-3" style="background-color: #6b5b95; border: none;" type="submit" >
                                 Editar
                             </x-primary-button>

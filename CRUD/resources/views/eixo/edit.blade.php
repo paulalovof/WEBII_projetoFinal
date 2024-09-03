@@ -26,13 +26,13 @@
                         @method('PUT')
 
                         <div class="p-2">
-                            <p>Nome: {{$eixo->nome}}</p>
+                            <p>Nome:</p>
                             <input type="text" name="nome" class="sm:rounded-lg" value="{{$eixo->nome}}"><br>
                         </div>
 
                         <div class="p-2">
                             <p>Descrição:</p>
-                            <textarea name="descricao" id="" cols="15" rows="6">{{$eixo->descricao}}</textarea><br>
+                            <textarea name="descricao" id="" cols="20" rows="6" class="sm:rounded-lg">{{$eixo->descricao}}</textarea><br>
                         </div> 
                 
                         <div>

@@ -36,7 +36,4 @@ class CursoPolicy
         return PermissionController::isAuthorized('curso.destroy');
     }
 
-    public function graph(){
-        return PermissionController::isAuthorized('curso.graph');
-    }
 }

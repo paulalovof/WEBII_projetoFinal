@@ -41,6 +41,10 @@
                         <x-dropdown-link :href="route('eixo.index')">
                             {{ __('Eixos') }}
                         </x-dropdown-link>
+
+                        <x-dropdown-link :href="route('curso.index')">
+                            {{ __('Cursos') }}
+                        </x-dropdown-link>
                         
 
                         <!-- Authentication -->

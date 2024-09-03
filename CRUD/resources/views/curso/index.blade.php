@@ -36,7 +36,7 @@
                                 <tr class="">
                                     <td class="w-[50px] text-center p-2">{{$item->id}}</td>
                                     <td class="w-1/4 text-center p-2">{{$item->nome}}</td>
-                                    <td class="w-[400px] text-center p-2">{{$item->sigla}}</td>
+                                    <td class="w text-center p-2">{{$item->sigla}}</td>
                                     <td class="w-[400px] text-center p-2">{{$item->eixo->nome}}</td>
                                     <td class="flex flex-row justify-around p-2">
 

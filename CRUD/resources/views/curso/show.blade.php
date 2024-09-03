@@ -23,6 +23,7 @@
                     <ul>
                         <li class="p-2"><b>ID:</b> {{$curso->id}}</li>
                         <li class="p-2"><b>NOME:</b> {{$curso->nome}}</li>
+                        <li class="p-2"><b>SIGLA:</b> {{$curso->sigla}}</li>
                         <li class="p-2"><b>EIXO:</b> {{$eixo->nome}}</li>
                         <li class="p-2"><b>CRIACAO:</b> {{$eixo->created_at}}</li>
                         <li class="p-2"><b>ALTERACAO:</b> {{$eixo->updated_at}}</li>

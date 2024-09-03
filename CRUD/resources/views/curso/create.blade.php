@@ -32,13 +32,17 @@
                             <input type="text" name="sigla" class="sm:rounded-lg"><br>
                         </div>
 
-                        <select name="eixo_id" id="eixo_id" class="p-2">
-                            <option selected disabled></option>
-                            @foreach ($eixos as $item)
-                                <option value="{{$item->id}}">{{$item->nome}}</option>   
-                            @endforeach
-                        </select>
-                        <div>
+                        <div class="pt-2">
+                            <p>Eixo:</p>
+                            <select name="eixo_id" id="eixo_id" class="p-2 sm:rounded-lg" required>
+                                <option selected disabled></option>
+                                @foreach ($eixos as $item)
+                                    <option value="{{$item->id}}">{{$item->nome}}</option>   
+                                @endforeach
+                            </select>
+                        </div>
+                        
+                        <div class="pt-5">
                             <x-primary-button class="ms-3" style="background-color: #6b5b95; border: none;" type="submit" >
                                 Salvar
                             </x-primary-button>
